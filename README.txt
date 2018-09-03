@@ -1,0 +1,11 @@
+Simulation of a plastic balanced network.
+
+The code to run a simulation of this balanced network is composed of 4 different scripts and one function. The main code that runs the simulation is BalancedNetworkMain.m. Here is where the time of the run is determined, a long with individual neuron parameters, and the number of neurons in the network. Additionally, here is where plots such as the rasterplot, and time-dependent firign rates are generated. Lastly, this script also includes the computation of mean field spike count covariances and correlations. The spike count covariances are computed using the function SpikeCountCov.m, which calculates the spike count covariances by counting spikes over some time interval (T1 to T2) with some window size, and for each neuron. The covariances are finally obtained by taking the covariance of the matrix of spike counts.
+
+A key component that determines the dynamics of the network is the choice of connectivity matrix. This can be adjusted at Connectivity.m, and currently the matrix is sparse and it is built with mean connection strengths between cell pairs of each type and scaled by $$1/sqrt{N}$$. 
+
+The script named ExternalLayer.m determines the structure of the external feedforward layer, which in this case it is a network of Poisson neurons with pairwise correlation 'c'. 
+
+The actual run of the network takes place in Simulation.m. In this script, we first define variables to record from some neurons and we preallocate memory. The for loop goes through each time step of the simulation and starts by propagating the feedforward spikes onto the recurrent network. Euler's method on the EIF differential equation is used to solve for the voltage at each point in time. Next, spikes are recorded into the matrix 's', whose first row stores spike times, and its second row, the neuron index. Synaptic currents are also updated using Euler's method and are recorded.
+
+The simulation can actually run using different models. For example, if we use Simulation_AdEx.m on the main script, then each neuron will be modeled by the Adaptive EIF, instead of just the EIF formalism. This script contains only three extra parameters that control adaptation (a, b, and tauw), and it creates a figure that shows the evolution of the adaptation current over time.
