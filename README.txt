@@ -1,4 +1,4 @@
-Simulation of a plastic balanced network.
+# Simulation of a nonplastic balanced network.
 
 The code to run a simulation of this balanced network is composed of 4 different scripts and one function. The main code that runs the simulation is BalancedNetworkMain.m. Here is where the time of the run is determined, a long with individual neuron parameters, and the number of neurons in the network. Additionally, here is where plots such as the rasterplot, and time-dependent firign rates are generated. Lastly, this script also includes the computation of mean field spike count covariances and correlations. The spike count covariances are computed using the function SpikeCountCov.m, which calculates the spike count covariances by counting spikes over some time interval (T1 to T2) with some window size, and for each neuron. The covariances are finally obtained by taking the covariance of the matrix of spike counts.
 
